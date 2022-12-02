@@ -1,25 +1,43 @@
 @extends("blank")
 
 @section("konten")
+<table class="table">
+    <a href="{{ route("buat_dokter") }}">Add data</a>
+    <thead>
+        <tr>
+            <th scope="col">Nama</th>
+            <th scope="col">Alamat</th>
+            <th scope="col">Kelamin</th>
+            <th scope="col">TTL</th>
+            <th scope="col">Umur</th>
+           
+
+        </tr>
+    </thead>
+    <tbody>
 
     <h1>Semua Data</h1>
 
-    @foreach($data as $dokter)
-        Nama            : {{ $dokter->nama }} <br>
-        Alamat          : {{ $dokter->alamat }} <br>
-        Kelamin         : {{ $dokter->kelamin }} <br>
-        TTL             : {{ $dokter->ttl }} <br>
-        Umur            : {{ $dokter->umur }} <br>
+    <tbody>
+        @foreach($data as $dokter)
+        <tr>
+            <th scope="row">{{$dokter->nama}}</th>
+            <td>{{$dokter->alamat}}</td>
+            <td>{{$dokter->kelamin}}</td>
+            <td>{{$dokter->ttl}}</td>
+            <td>{{$dokter->umur}}</td>
+            <td>
+                <a href="{{ route("user_edit", ["id" => $dokter->id]) }}">edit</a>
+                <a href="{{ route("user_show", ["id" => $dokter->id]) }}">show</a>
 
 
-        <a href="{{ route('ubah_dokter', ['id' => $dokter->id]) }}">Ubah</a>
-        <a href="{{ route('tampil_dokter', ['id' => $dokter->id]) }}">Tampil</a>
-
-        <form action="{{ route('hapus_dokter', ['id' => $dokter->id]) }}" method="post">
-            @csrf
-            @method('delete')
-            <button type="submit">Hapus</button>
-        </form>
-        <hr>
+                <form action="{{ route("user_hapus", ["id" => $dokter->id]) }}" method="post">
+                    @csrf
+                    @method("delete")
+                    <button type="submit">Hapus</button>
+                </form>
+            </td>
+        </tr>
     @endforeach
+    </table>
 @endsection

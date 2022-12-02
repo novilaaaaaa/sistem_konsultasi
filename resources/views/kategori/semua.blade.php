@@ -1,20 +1,42 @@
 @extends("blank")
 
 @section("konten")
+    <table class="table">
+        <a href="{{ route("buat_kategori") }}">Add data</a>
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Nama</th>
+                <th scope="col">keterangan</th>
+                <th scope="col">Create</th>
+                <th scope="col">Updated</th>
 
-    <h1>Semua Data</h1>
+            </tr>
+        </thead>
+        <tbody>
 
-    @foreach($data as $kategori)
-        Nama : {{ $kategori->nama }} <br>
-        Keterangan: {{ $kategori->keterangan }} <br>
-        <a href="{{ route('ubah_kategori', ['id' => $kategori->id]) }}">Ubah</a>
-        <a href="{{ route('tampil_kategori', ['id' => $kategori->id]) }}">Tampil</a>
+        <h1>Semua Data</h1>
 
-        <form action="{{ route('hapus_kategori', ['id' => $kategori->id]) }}" method="post">
-            @csrf
-            @method('delete')
-            <button type="submit">Hapus</button>
-        </form>
-        <hr>
-    @endforeach
+        <tbody>
+            @foreach($data as $kategori)
+            <tr>
+                <th scope="row">{{$kategori->id}}</th>
+                <td>{{$kategori->nama}}</td>
+                <td>{{$kategori->keterangan}}</td>
+                <td>{{$kategori->created_at}}</td>
+                <td>{{$kategori->updated_at}}</td>
+                <td>
+                    <a href="{{ route("user_edit", ["id" => $kategori->id]) }}">edit</a>
+                    <a href="{{ route("user_show", ["id" => $kategori->id]) }}">show</a>
+
+
+                    <form action="{{ route("user_hapus", ["id" => $kategori->id]) }}" method="post">
+                        @csrf
+                        @method("delete")
+                        <button type="submit">Hapus</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+        </table>
 @endsection
