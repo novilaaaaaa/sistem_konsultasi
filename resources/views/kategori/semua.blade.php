@@ -1,8 +1,8 @@
-@extends("blank")
+@extends("layouts.blank")
 
 @section("konten")
     <table class="table">
-        <a href="{{ route("buat_kategori") }}">Add data</a>
+        <a href="{{ route("buat_kategori") }}" class="btn btn-success">Add data</a>
         <thead>
             <tr>
                 <th scope="col">No</th>
@@ -15,8 +15,6 @@
         </thead>
         <tbody>
 
-        <h1>Semua Data</h1>
-
         <tbody>
             @foreach($data as $kategori)
             <tr>
@@ -26,8 +24,8 @@
                 <td>{{$kategori->created_at}}</td>
                 <td>{{$kategori->updated_at}}</td>
                 <td>
-                    <a href="{{ route("user_edit", ["id" => $kategori->id]) }}">edit</a>
-                    <a href="{{ route("user_show", ["id" => $kategori->id]) }}">show</a>
+                    <a href="{{ route("ubah_kategori", ["id" => $kategori->id]) }}" class="btn btn-success">ubah</a>
+                    <a href="{{ route("tampil_kategori", ["id" => $kategori->id]) }}" class="btn btn-success">tampil</a>
 
 
                     <form action="{{ route("user_hapus", ["id" => $kategori->id]) }}" method="post">

@@ -22,7 +22,7 @@ class PasienController extends Controller
         $pasien->umur = $request->get("umur");
         $pasien->save();
 
-        return redirect(route("tampil_pasien", ['id' => $pasien->id]));
+        return redirect(route("semua_pasien"));
     }
 
     public function tampil($id)
@@ -59,6 +59,6 @@ class PasienController extends Controller
     public function hapus($id)
     {
         Pasien::destroy($id);
-        return redirect(route('semua_pasien'));
+        return redirect(route("semua_pasien"));
     }
 }

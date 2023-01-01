@@ -23,7 +23,7 @@ class DokterController extends Controller
 
         $dokter->save();
 
-        return redirect(route("tampil_dokter", ['id' => $dokter->id]));
+        return redirect(route("tampil_dokter"));
     }
 
     public function tampil($id)

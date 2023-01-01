@@ -22,9 +22,7 @@ use App\Http\Controllers\DokterController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get("hii/panggilan/{name}", [TestingController::class, "hii"])->name("hii");
 
@@ -62,21 +60,28 @@ Route::get("/laela", function () {
     return view("laela");
 })->name("laela");
 
-Route::get("/tampil-semua-user", [UserController::class, "tampil"])->name("user_all");
-Route::get("/input-user", [UserController::class, "forminput"])->name("user_input");
-Route::post("/simpan-user", [UserController::class, "simpan"])->name("user_simpan");
-
-Route::get("/edit-user/{id}", [UserController::class, "formEdit"])->name("user_edit");
-Route::put("/update-user/{id}", [UserController::class, "update"])->name("user_update");
-
-Route::delete("/hapus-user/{id}", [UserController::class, "hapus"])->name("user_hapus");
-Route::get("/tampil-user/{id}", [UserController::class, "show"])->name("user_show");
-
 Route::get("/login", [SecurityController::class, "formLogin"])->name("login");
 Route::post("/proses-login", [SecurityController::class, "prosesLogin"])->name("proses_login");
-Route::get("/logout", [SecurityController::class, "logout"])->name("logout");
 
 Route::middleware("auth")->group(function() {
+    Route::get('/', function () {
+        return view('layouts.blank');
+    });
+
+    Route::get("/tampil-semua-user", [UserController::class, "tampil"])->name("user_all");
+    Route::get("/input-user", [UserController::class, "forminput"])->name("user_input");
+    Route::post("/simpan-user", [UserController::class, "simpan"])->name("user_simpan");
+    
+    Route::get("/edit-user/{id}", [UserController::class, "formEdit"])->name("user_edit");
+    Route::put("/update-user/{id}", [UserController::class, "update"])->name("user_update");
+    
+    Route::delete("/hapus-user/{id}", [UserController::class, "hapus"])->name("user_hapus");
+    Route::get("/tampil-user/{id}", [UserController::class, "show"])->name("user_show");
+    
+    
+    
+    Route::get("/logout", [SecurityController::class, "logout"])->name("logout");
+
 Route::get("kategori/buat", [KategoriController::class, 'buat'])->name("buat_kategori");
 Route::post("kategori/simpan", [KategoriController::class, 'simpan'])->name("simpan_kategori");
 Route::get("kategori/tampil/{id}", [KategoriController::class, 'tampil'])->name("tampil_kategori");

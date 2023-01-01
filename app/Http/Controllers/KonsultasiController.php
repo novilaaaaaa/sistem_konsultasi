@@ -23,7 +23,7 @@ class KonsultasiController extends Controller
         $Konsultasi->id_kategori = $request->get("id_kategori");
         $Konsultasi->save();
 
-        return redirect(route("tampil_konsultasi", ['id' => $Konsultasi->id]));
+        return redirect(route("tampil_konsultasi"));
     }
 
     public function tampil($id)
@@ -58,6 +58,6 @@ class KonsultasiController extends Controller
     public function hapus($id)
     {
         Konsultasi::destroy($id);
-        return redirect(route('semua_Konsultasi'));
+        return redirect(route("semua_konsultasi"));
     }
 }

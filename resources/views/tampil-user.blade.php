@@ -1,9 +1,9 @@
-@extends("blank")
+@extends("layouts.blank")
 
 @section("konten")
 
 <table class="table">
-    <a href="{{ route("user_input") }}">Add data</a>
+    <a href="{{ route("user_input") }}" class="btn btn-success">Add data</a>
     <thead>
         <tr>
             <th scope="col">Id</th>
@@ -27,8 +27,8 @@
             <td>{{$user->created_at}}</td>
             <td>{{$user->updated_at}}</td>
             <td>
-                <a href="{{ route("user_edit", ["id" => $user->id]) }}">edit</a>
-                <a href="{{ route("user_show", ["id" => $user->id]) }}">show</a>
+                <a href="{{ route("user_edit", ["id" => $user->id]) }}" class="btn btn-success">edit</a>
+                <a href="{{ route("user_show", ["id" => $user->id]) }}" class="btn btn-success">show</a>
 
 
                 <form action="{{ route("user_hapus", ["id" => $user->id]) }}" method="post">

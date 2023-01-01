@@ -1,34 +1,36 @@
-@extends("blank")
+@extends("layouts.blank")
 
 @section("konten")
-<table class="table">
-    <a href="{{ route("buat_dokter") }}">Add data</a>
+
+<table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
+    <a href="{{ route("buat_dokter") }}" class="btn btn-success">Add data</a>
     <thead>
         <tr>
+            <th scope="col">No</th>
             <th scope="col">Nama</th>
             <th scope="col">Alamat</th>
             <th scope="col">Kelamin</th>
             <th scope="col">TTL</th>
             <th scope="col">Umur</th>
+            <th scope="col">Action</th>
            
 
         </tr>
     </thead>
     <tbody>
 
-    <h1>Semua Data</h1>
-
     <tbody>
         @foreach($data as $dokter)
         <tr>
-            <th scope="row">{{$dokter->nama}}</th>
+            <th scope="row">{{$dokter->id}}</th>
+            <th>{{$dokter->nama}}</th>
             <td>{{$dokter->alamat}}</td>
             <td>{{$dokter->kelamin}}</td>
             <td>{{$dokter->ttl}}</td>
             <td>{{$dokter->umur}}</td>
             <td>
-                <a href="{{ route("user_edit", ["id" => $dokter->id]) }}">edit</a>
-                <a href="{{ route("user_show", ["id" => $dokter->id]) }}">show</a>
+                <a href="{{ route("ubah_dokter", ["id" => $dokter->id]) }}" class="btn btn-success">ubah</a>
+                <a href="{{ route("tampil_dokter", ["id" => $dokter->id]) }}" class="btn btn-success">tampil</a>
 
 
                 <form action="{{ route("user_hapus", ["id" => $dokter->id]) }}" method="post">

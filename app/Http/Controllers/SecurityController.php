@@ -20,7 +20,7 @@ class SecurityController extends Controller
         $user = User::where('email', $email)->where("password", $password)->first();
         if ($user != null) {
             Auth::login($user);
-            return "Login Berhasil";
+            return redirect("pasien/semua");
         } else {
             return back();
         }

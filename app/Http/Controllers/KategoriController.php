@@ -19,7 +19,7 @@ class KategoriController extends Controller
         $kategori->keterangan = $request->get("keterangan");
         $kategori->save();
 
-        return redirect(route("tampil_kategori", ['id' => $kategori->id]));
+        return redirect(route("tampil_kategori"));
     }
 
     public function tampil($id)

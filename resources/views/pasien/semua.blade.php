@@ -1,8 +1,8 @@
-@extends("blank")
+@extends("layouts.blank")
 
 @section("konten")
 <table class="table">
-    <a href="{{ route("buat_pasien") }}">Add data</a>
+    <a href="{{ route("buat_pasien") }}" class="btn btn-success">Add data</a>
     <thead>
         <tr>
             <th scope="col">No</th>
@@ -15,8 +15,6 @@
     </thead>
     <tbody>
 
-    <h1>Semua Data</h1>
-
     <tbody>
         @foreach($data as $pasien)
         <tr>
@@ -26,11 +24,11 @@
             <td>{{$pasien->created_at}}</td>
             <td>{{$pasien->updated_at}}</td>
             <td>
-                <a href="{{ route("user_edit", ["id" => $pasien->id]) }}">edit</a>
-                <a href="{{ route("user_show", ["id" => $pasien->id]) }}">show</a>
+                <a href="{{ route("ubah_pasien", ["id" => $pasien->id]) }}" class="btn btn-success">ubah</a>
+                <a href="{{ route("tampil_pasien", ["id" => $pasien->id]) }}" class="btn btn-success">tampil</a>
 
 
-                <form action="{{ route("user_hapus", ["id" => $pasien->id]) }}" method="post">
+                <form action="{{ route("hapus_pasien", ["id" => $pasien->id]) }}" method="post">
                     @csrf
                     @method("delete")
                     <button type="submit">Hapus</button>
